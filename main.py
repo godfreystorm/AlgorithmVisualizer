@@ -7,8 +7,13 @@ class DrawInformation: # Constructor for the drawing information.e.g. the width 
     WHITE = 255,255,255
     GREEN = 0,255,0
     RED = 255,0,0
-    GREY = 128,128,128
     BACKGROUND_COLOR = WHITE
+
+    GRADIENTS = [ # The list of gradients to be used in the chart/graph. Colors selceted with intension of allowing user to easily indentify differences.
+        (128,128,128),
+        (160, 160, 160),
+        (192, 192, 192)
+    ]
 
     SIDE_PADDING = 100 # padding on edges putting the chart/graph being sorted in the middle of the screen.
     TOP_PADDING = 150 # padding on the top of the screen.
@@ -38,6 +43,19 @@ def generate_starting_list(n, min_val, max_val):
             
     return lst
 
+def draw(draw_info): 
+    draw_info.window.fill(draw_info.BACKGROUND_COLOR) # Fill the background with background color variable allowing for easy change of background color.
+    pygame.display.update() # Update the window to show the chart/graph.
+
+def draw_list(draw_info):
+    lst = draw_info.lst
+
+    for i val in enumerate(lst):
+        x = draw_info.start_x + i * draw_info.block_width
+        y = draw_info.height - (val - draw_info.min_val) * draw_info.block_height 
+        
+        color = 
+
 
 def main():
     run = True
@@ -53,7 +71,7 @@ def main():
     while run: # Loop for pygame to run until the user clicks the close button.
         clock.tick(60)
 
-        pygame.display.update()
+        draw(draw_info) 
 
         for event in pygame.event.get(): 
             if event.type == pygame.QUIT: # Exit program; To allow the user to close the program with "X" icon.
