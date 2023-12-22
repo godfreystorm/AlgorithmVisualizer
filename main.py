@@ -80,6 +80,13 @@ def main():
             if event.type == pygame.QUIT: # Exit program; To allow the user to close the program with "X" icon.
                 run = False
 
+            if event.type != pygame.KEYDOWN:
+                continue
+
+            if event.key == pygame.K_r: # Statement added to constantly running pygame loop to check if the user pressed the "r" key. If they did program will reset the list of numbers/chart.
+                lst = generate_starting_list(n, min_val, max_val) # regenerate the list of numbers/chart.
+                draw_info.set_list(lst) # Resseting on draw_info class so it updates when we are actually drawing the chart/graph.
+
     pygame.quit()
 
 if __name__ == "__main__":
