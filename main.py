@@ -46,14 +46,17 @@ def generate_starting_list(n, min_val, max_val): # Generate a list of random num
             
     return lst
 
-def draw(draw_info): # Actual drawing of the chart with the given draw_info object.
+def draw(draw_info, algo_name, ascending): # Actual drawing of the chart with the given draw_info object.
     draw_info.window.fill(draw_info.BACKGROUND_COLOR) # Fill the background with background color variable allowing for easy change of background color.
     
+    title = draw_info.LARGE_FONT.render(f"{algo_name} - {'Ascending' if ascending else 'Decending'}", 1, draw_info.RED)
+    draw_info.window.blit(title, (draw_info.width/2 - title.get_width()/2 , 3))
+    
     controls = draw_info.FONT.render("R - Reset | SPACE - start sorting | A - ascending | D - descending", 1, draw_info.BLACK)
-    draw_info.window.blit(controls, (draw_info.width/2 - controls.get_width()/2 , 5))
+    draw_info.window.blit(controls, (draw_info.width/2 - controls.get_width()/2 , 65))
     
     sorting = draw_info.FONT.render("I - Insertion Sort | B - Bubble Sort", 1, draw_info.BLACK)
-    draw_info.window.blit(sorting, (draw_info.width/2 - sorting.get_width()/2, 35))
+    draw_info.window.blit(sorting, (draw_info.width/2 - sorting.get_width()/2, 95))
 
     draw_list(draw_info)
     pygame.display.update() # Update the window to show the chart/graph.
@@ -124,7 +127,7 @@ def main():
             except StopIteration: # This will be called if the top line dosent work, sorting will be set to false meaning the generator has finished.
                 sorting = False 
         else:
-            draw(draw_info) # Draw the chart
+            draw(draw_info, sorting_algo_name, ascending) # Draw the chart
 
         for event in pygame.event.get(): 
             if event.type == pygame.QUIT: # Exit program; To allow the user to close the program with "X" icon.
