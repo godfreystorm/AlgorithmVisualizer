@@ -15,8 +15,8 @@ class DrawInformation: # Constructor for the drawing information.e.g. the width 
         (192, 192, 192)
     ]
 
-    FONT = pygame.font.SysFont('arial', 20) # The font used for all the text.
-    LARGE_FONT = pygame.font.SysFont('arial', 40) 
+    FONT = pygame.font.SysFont('comicsans', 20) # The font used for all the text.
+    LARGE_FONT = pygame.font.SysFont('comicsans', 40) 
     SIDE_PADDING = 100 # padding on edges putting the chart/graph being sorted in the middle of the screen.
     TOP_PADDING = 150 # padding on the top of the screen.
 
@@ -48,11 +48,11 @@ def generate_starting_list(n, min_val, max_val): # Generate a list of random num
 def draw(draw_info): # Actual drawing of the chart with the given draw_info object.
     draw_info.window.fill(draw_info.BACKGROUND_COLOR) # Fill the background with background color variable allowing for easy change of background color.
     
-    controls = draw_info.Font.render("R - Reset | SPACE - start sorting | A - ascending | D - descending", 1, draw_info.BLACK)
-    draw_info.window.blit(controls, (draw_info.width/2 - controls.get_width/2 , 5))
+    controls = draw_info.FONT.render("R - Reset | SPACE - start sorting | A - ascending | D - descending", 1, draw_info.BLACK)
+    draw_info.window.blit(controls, (draw_info.width/2 - controls.get_width()/2 , 5))
     
-    sorting = draw_info.Font.render("I - Insertion Sort | B - Bubble Sort")
-    draw_info.window.blit(sorting, (draw_info.width/2 - sorting.get_width/2, 35))
+    sorting = draw_info.FONT.render("I - Insertion Sort | B - Bubble Sort", 1, draw_info.BLACK)
+    draw_info.window.blit(sorting, (draw_info.width/2 - sorting.get_width()/2, 35))
 
     draw_list(draw_info)
     pygame.display.update() # Update the window to show the chart/graph.
