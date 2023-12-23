@@ -104,7 +104,7 @@ def insertion_sort(draw_info, ascending = True): # Insertion sort algorithm.
         current = lst[i]
         while True:
             ascending_sort = i > 0 and lst[i - 1] > current and ascending 
-            descending_sort = i > 0 and lst[i - 1] > current and not ascending 
+            descending_sort = i > 0 and lst[i - 1] < current and not ascending 
 
             if not ascending_sort and not descending_sort:
                 break 
