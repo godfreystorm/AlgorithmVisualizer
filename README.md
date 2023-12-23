@@ -14,7 +14,7 @@ Thanks to this self-driven project, I was able to deepen my understanding of var
 To get a copy of this project up and running on your local machine for development and testing purposes, follow these steps:
 
 1. **Clone the Repository**: Clone this repo to your local machine using `https://github.com/yourusername/AlgorithmVisualizer.git`.
-2. **Navigate to the Directory**: Change into the project directory: *cd AlgorithmVisualizer*
+2. **Navigate to the Directory**: Change into the project directory: '***cd AlgorithmVisualizer***'
 3. **Install Python:** Download and install Python from https://python.org.
 4. **Install Pygame:** Install the Pygame library using pip (Python's package installer): '***pip3 install pygame***'
 5. **Running the Visualizer:** To run the visualizer, execute the main.py script from your command line or terminal: '***python main.py***'
