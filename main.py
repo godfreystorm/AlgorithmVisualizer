@@ -49,7 +49,7 @@ def generate_starting_list(n, min_val, max_val): # Generate a list of random num
 def draw(draw_info, algo_name, ascending): # Actual drawing of the chart with the given draw_info object.
     draw_info.window.fill(draw_info.BACKGROUND_COLOR) # Fill the background with background color variable allowing for easy change of background color.
     
-    title = draw_info.LARGE_FONT.render(f"{algo_name} - {'Ascending' if ascending else 'Decending'}", 1, draw_info.RED)
+    title = draw_info.LARGE_FONT.render(f"{algo_name} - {'Ascending' if ascending else 'Descending'}", 1, draw_info.RED)
     draw_info.window.blit(title, (draw_info.width/2 - title.get_width()/2 , 3))
     
     controls = draw_info.FONT.render("R - Reset | SPACE - start sorting | A - ascending | D - descending", 1, draw_info.BLACK)
@@ -94,6 +94,26 @@ def bubble_sort(draw_info, ascending = True): # Bubble sort algorithm.
                 lst[j], lst[j + 1] = lst[j + 1], lst[j]
                 draw_list(draw_info, {j: draw_info.GREEN, j + 1: draw_info.RED}, True) # Chang the collor of the rectangles being compared for sorting to be green/red.
                 yield True # To be able to stop function and resume it. Esentially allows me to be able to use other controls like "R" Reset.
+    
+    return lst
+
+
+def insertion_sort(draw_info, ascending = True): # Insertion sort algorithm.
+    lst = draw_info.lst # Get the list of numbers to be sorted.
+    for i in range(1, len(lst)):
+        current = lst[i]
+        while True:
+            ascending_sort = i > 0 and lst[i - 1] > current and ascending 
+            descending_sort = i > 0 and lst[i - 1] > current and not ascending 
+
+            if not ascending_sort and not descending_sort:
+                break 
+
+            lst[i] = lst[i - 1]
+            i = i - 1
+            lst[i] = current
+            draw_list(draw_info, {i - 1: draw_info.GREEN, i: draw_info.RED}, True) # Change the collor of the rectangles being compared for sorting to be green/red.
+            yield True # To be able to stop function and resume it. Esentially allows me to be able
     
     return lst
 
@@ -147,6 +167,12 @@ def main():
                 ascending = True
             elif event.key == pygame.K_d and not sorting:
                 ascending = False
+            elif event.key == pygame.K_i and not sorting:
+                sorting_algorithm = insertion_sort
+                sorting_algo_name = "Insertion Sort"
+            elif event.key == pygame.K_b and not sorting:
+                sorting_algorithm = bubble_sort
+                sorting_algo_name = "Bubble Sort"
 
 
     pygame.quit()
