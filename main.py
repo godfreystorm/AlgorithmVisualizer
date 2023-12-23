@@ -15,6 +15,8 @@ class DrawInformation: # Constructor for the drawing information.e.g. the width 
         (192, 192, 192)
     ]
 
+    FONT = pygame.font.SysFont('arial', 20) # The font used for all the text.
+    LARGE_FONT = pygame.font.SysFont('arial', 40) 
     SIDE_PADDING = 100 # padding on edges putting the chart/graph being sorted in the middle of the screen.
     TOP_PADDING = 150 # padding on the top of the screen.
 
@@ -45,6 +47,13 @@ def generate_starting_list(n, min_val, max_val): # Generate a list of random num
 
 def draw(draw_info): # Actual drawing of the chart with the given draw_info object.
     draw_info.window.fill(draw_info.BACKGROUND_COLOR) # Fill the background with background color variable allowing for easy change of background color.
+    
+    controls = draw_info.Font.render("R - Reset | SPACE - start sorting | A - ascending | D - descending", 1, draw_info.BLACK)
+    draw_info.window.blit(controls, (draw_info.width/2 - controls.get_width/2 , 5))
+    
+    sorting = draw_info.Font.render("I - Insertion Sort | B - Bubble Sort")
+    draw_info.window.blit(sorting, (draw_info.width/2 - sorting.get_width/2, 35))
+
     draw_list(draw_info)
     pygame.display.update() # Update the window to show the chart/graph.
 
@@ -70,6 +79,10 @@ def main():
 
     lst = generate_starting_list(n, min_val, max_val) # generate a list of random numbers between min_val and max_val.
     draw_info = DrawInformation(800, 600, lst) # create a DrawInformation object to draw the chart/graph; The grarph is a visualization of the data to be sorted.
+    
+    #Sorting functionalities.
+    sorting = False #Starts as false so that the program will not start sorting untill user tells it to.
+    ascending = True 
 
     while run: # Loop for pygame to run until the user clicks the close button.
         clock.tick(60) # Set the clock to 60 frames per second.
@@ -86,6 +99,14 @@ def main():
             if event.key == pygame.K_r: # Statement added to constantly running pygame loop to check if the user pressed the "r" key. If they did program will reset the list of numbers/chart.
                 lst = generate_starting_list(n, min_val, max_val) # regenerate the list of numbers/chart.
                 draw_info.set_list(lst) # Resseting on draw_info class so it updates when we are actually drawing the chart/graph.
+                sorting == False
+            elif event.key == pygame.K_ESCAPE and sorting == False: # The and added so we cant start sorting when already sorting.
+                sorting = True # The elif checks if user pressed the escape key. If they did, the program will start sorting.
+            elif event.key == pygame.K_a and not sorting:
+                ascending = True
+            elif event.key == pygame.K_a and not sorting:
+                ascending = False
+
 
     pygame.quit()
 
