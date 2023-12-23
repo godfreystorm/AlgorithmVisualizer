@@ -16,7 +16,7 @@ An Algorithm visualizer made with python and pygame for visualization.  Project 
 ## Issues During/after project and planned improvements:
 * Preventing overlapping pixels. (Solved)
 * Descending order for Insertion sort not working. (Solved)
-* Cant pause sorting process, dosent stop till completed once begun.
+* Cant pause sorting process, dosent stop till completed once begun. (Solved)
+* Sorting should stop and reset if reset is hit during sorting. (Solved)
 * put algorithm selection in drop down menu to allow for better UI when more are added.
-* Sorting should stop and reset if reset is hit during sorting.
 

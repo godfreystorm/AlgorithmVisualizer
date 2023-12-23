@@ -149,6 +149,7 @@ def main():
         else:
             draw(draw_info, sorting_algo_name, ascending) # Draw the chart
 
+        # Event handling, User input and corresponding functions.
         for event in pygame.event.get(): 
             if event.type == pygame.QUIT: # Exit program; To allow the user to close the program with "X" icon.
                 run = False
@@ -159,11 +160,13 @@ def main():
             if event.key == pygame.K_r: # Statement added to constantly running pygame loop to check if the user pressed the "r" key. If they did program will reset the list of numbers/chart.
                 lst = generate_starting_list(n, min_val, max_val) # regenerate the list of numbers/chart.
                 draw_info.set_list(lst) # Resseting on draw_info class so it updates when we are actually drawing the chart/graph.
-                sorting == False
+                sorting = False
             elif event.key == pygame.K_SPACE and sorting == False: # The 'and' added so we can't start sorting when already sorting.
-                sorting = True # The elif checks if user pressed the space key. If they did, the program will start sorting.
+                sorting = True # The above elif checks if user pressed the space key. If they did, this block will make the program start sorting.
                 sorting_algorithm_generator = sorting_algorithm(draw_info, ascending) 
-            elif event.key == pygame.K_a and not sorting:
+            elif event.key == pygame.K_SPACE and sorting == True: #stops sorting when the user pressed the space key.
+                sorting = False
+            elif event.key == pygame.K_a and not sorting: 
                 ascending = True
             elif event.key == pygame.K_d and not sorting:
                 ascending = False
